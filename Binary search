@@ -1,0 +1,44 @@
+row=[253, 337, 125, 173, 40, 62, 101, 212, 138, 416, 249, 20, 266, 220, 297, 2, 457, 422, 142, 171, 221, 38, 38, 348, 239, 179, 301, 406, 379, 196, 49, 216, 395, 262, 278, 231, 380, 140, 274, 500, 216, 31, 474, 247, 249, 209, 175, 468, 307, 439
+, 327, 204, 144, 460, 226, 202, 102, 394, 76, 16, 483, 374, 383, 30, 478, 72, 496, 37, 487, 304, 64, 319, 495, 378, 241, 283, 435, 54, 165, 245, 444, 194, 72, 259, 485, 457, 76, 135, 448, 108, 251, 468, 372, 260, 202, 424, 232, 216, 403, 312]    
+
+
+#Iterative approach
+def search(item):
+    length = len(row)
+    for i in range (0, length, 1):
+        if row[i] == item:
+            return i
+        else:
+            continue
+        return "None"
+        
+
+#Recursive approach
+def binarysearch(row,item,first,length):
+    if first > length:
+        return None
+    else:
+        middle= (first+length) // 2
+        if item == row[middle]:
+            return middle
+        elif item < row[middle]:
+            return binarysearch(row, item, first, middle - 1)
+        else:
+            return binarysearch(row, item, middle + 1, length)
+
+
+def main():
+    item = int(input())
+    import time 
+    t0 = time.clock()
+    row.sort()
+    print(search(item))
+    t1 = time.clock() - t0
+    print("Time taken", t1)
+    length = len(row)
+    first = 0
+    print(binarysearch(row,item,first,length))
+    t2 = time.clock() - t0
+    print("Time taken", t2)
+    
+main()
